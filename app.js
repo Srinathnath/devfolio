@@ -61,8 +61,8 @@ app.get('/', sessionHandler.verifyNotLoggedIn, routes.index);
 /*
  * User creation routes
  */
-app.get('/new_user', sessionHandler.verifyNotLoggedIn, routes.registration);
-app.post('/new_user', sessionHandler.verifyNotLoggedIn, routes.registration);
+app.get('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
+app.post('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
 app.post('/register', sessionHandler.verifyNotLoggedIn, routes.createUser);
 
 /*

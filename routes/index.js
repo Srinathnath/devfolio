@@ -11,7 +11,7 @@ exports.index = function(req, res) {
 /*
  * User creation routes
  */
-exports.registration = function(req, res) {
+exports.newUser = function(req, res) {
 	if (req.body.user)
 		user = req.body.user;
 	else
@@ -38,6 +38,7 @@ exports.createUser = function(req, res) {
 					user = new UserModel.User(user);
 					user.save(function(err) {
 						if (err) console.log(err);
+						req.flash('success', 'You are set! Go ahead and log in with your credentials.');
 						res.redirect('/login');
 					});
 				}
@@ -72,7 +73,7 @@ exports.validateEmail = function(req, res) {
  */
 exports.getLoginForm = function(req, res) {
 	user = req.user;
-	res.render('login', { req: req });
+	res.render('login', { req: req, success: req.flash('success'), error: req.flash('error') });
 };
 
 exports.login = function(req, res) {

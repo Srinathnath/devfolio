@@ -2,10 +2,13 @@ extends header
 
 block content
 	.container
+		if (success.length)
+			div.success-message= success
 		.login-container
 			h1 Log In or 
 				a(href="/new_user") Sign up
-			div.error-message= req.flash('error')
+			if (error.length)
+				div.error-message= error
 			form.login-form(method="post", action="/login")
 				div.text-input
 					label(for="user[email]") Email:
