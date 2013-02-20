@@ -1,0 +1,24 @@
+extends header
+
+block content
+	div.folio
+		div.container
+			h1 #{folio.firstName} #{folio.lastName}
+			- for (var i=0; i<3; i++)
+				div.row-fluid
+					- for (var j=0; j<3; j++)
+						div.span4.project
+							a(href="/hunterclarke")
+								img(src="http://dummyimage.com/300x225/4d494d/686a82.gif&text=placeholder+image")
+							div.project-meta
+								p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+								span.project-tag-container
+									a.project-tag(href="#") Ruby
+								span.project-tag-container
+									a.project-tag(href="#") Ruby on Rails
+								span.project-tag-container
+									a.project-tag(href="#") Javascript
+								span.project-tag-container
+									a.project-tag(href="#") HTML5
+								span.project-tag-container
+									a.project-tag(href="#") Node.js

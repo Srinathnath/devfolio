@@ -1,0 +1,18 @@
+extends header
+
+block content
+	.container
+		.login-container
+			h1 Log In or 
+				a(href="/new_user") Sign up
+			div.error-message= req.flash('error')
+			form.login-form(method="post", action="/login")
+				div.text-input
+					label(for="user[email]") Email:
+					input(type="text", name="email", data-type="email", data-required="true", data-remote="/validate_email", data-remote-method="POST")
+
+				div.text-input
+					label(for="user[password]") Password:
+					input(type="password", name="password", data-required="true")
+				div
+					input.btn.btn-success.submit-input(type="submit", value="Log In")

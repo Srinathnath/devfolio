@@ -1,0 +1,33 @@
+doctype 5
+html(lang="en")
+	head
+		if (typeof(title) !== 'undefined')
+			title= title
+		else
+			title Devfolio - A portfolio for developers
+
+		link(rel="stylesheet", type="text/css", href="/stylesheets/style.css")
+		block scripts
+
+	body
+		div.navbar.navbar-static-top.navbar-inverse
+			div.navbar-inner
+				div.container
+					if typeof(req) == 'undefined' || typeof(req.user) == 'undefined'
+						a.brand(href="/") Devfolio
+						ul.nav.pull-right
+							li.registration-link-item
+								a(href="/new_user") Claim Your Name
+							li
+								a(href="/login") Sign In
+					else
+						a.brand(href="/dash") Devfolio
+						ul.nav.pull-right
+							li.edit-folio-link-item
+								a(href="/"+req.user.username) Edit Page
+							li
+								a(href="/dash") Dashboard
+							li
+								a(href="/logout") Logout
+
+		block content

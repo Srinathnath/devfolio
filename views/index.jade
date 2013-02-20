@@ -1,0 +1,20 @@
+extends header
+
+block content
+	div.hero-registration
+		div.container
+			div.pre-registration-container
+				h1 Devfolio
+				h3 Make it easy to show off your code!
+				form.new-user-form(method="post", action="/new_user")
+					div.short-text-input
+						label(for="user[firstName]") First name:
+						input(type="text", name="user[firstName]")
+					div.short-text-input
+						label(for="user[lastName]") Last name:
+						input(type="text", name="user[lastName]")
+					div.text-input
+						label(for="user[email]") Email:
+						input(type="text", name="user[email]")
+					div
+						input.btn.btn-success.submit-input(type="Submit", value="Get Started!")

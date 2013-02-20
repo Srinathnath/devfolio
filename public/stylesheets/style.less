@@ -1,0 +1,176 @@
+@import "./lib/bootstrap.less";
+@import "./lib/elements.less";
+
+.nav li.edit-folio-link-item a {
+	color: green;
+}
+
+.nav li.edit-folio-link-item a:hover {
+	color: lighten(green, 25%);
+}
+
+.nav li.registration-link-item a{
+	color: @blue;
+}
+
+.nav li.registration-link-item a:hover {
+	color: lighten(@blue, 25%);
+}
+
+.hero-registration {
+	padding: 50px 0px;
+	background-color: #000;
+	background-image: url('/images/dark_leather.png');
+
+	h1 {
+		font-family: "HelveticaNeue-UltraLight", "Helvetica Neue Ultra Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	   	font-weight: 100;
+	   	font-size: 70px;
+	   	color: @grayDarker;
+	}
+
+	h3 {
+		font-weight: 200;
+		font-size: 20px;
+	}
+}
+
+.pre-registration-container {
+	width: 350px;
+	padding: 30px;
+	background-color: rgba(255,255,255, 0.7);
+}
+
+.new-user-form, .registration-form {
+	label {
+		color: @grayDark;
+		width: 70px;
+		font-size: 14px;
+		font-weight: 200;
+	}
+
+	input {
+		.rounded(0px);
+	}
+}
+
+.new-user-form {
+	.short-text-input {
+		width: 150px;
+		display: inline-block;
+		input {
+			width: 150px;
+		}
+		margin-right: 25px;
+	}
+
+	.text-input input{
+		width: 325px;
+	}
+}
+
+.submit-input {
+	margin-top: 25px;
+}
+
+.registration {
+	padding: 30px 0px;
+	height: 100%;
+
+	.error-message {
+		color: red;
+	}
+}
+
+.registration-form {
+	.text-input label{
+		width: 170px;
+		display: inline-block;
+	}
+
+	.text-input input {
+		width: 205px;
+		display: inline-block;
+	}
+
+	.text-input .parsley-error-list {
+		li {
+			float: left;
+			margin-right: 3px;
+		}
+		list-style: none;
+		color: red;
+		font-size: 12px;
+		width: 525px;
+		float: right;
+		padding-top: 5px;
+	}
+
+	#devfolio-hint-input {
+		padding-left: 65px;
+		width: 145px;
+	}
+
+	.devfolio-hint {
+		position: relative;
+		width: 60px;
+		margin-top: -35px;
+		margin-left: 177px;
+		color: #888;
+	}
+}
+
+.login-container {
+	width: 323px;
+	padding: 30px;
+	margin: 30px auto;
+	background-color: #eee;
+
+	.error-message {
+		margin: 5px 0px;
+		color: red;
+	}
+
+	h1 {
+		font-family: "HelveticaNeue-UltraLight", "Helvetica Neue Ultra Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		margin-bottom: 20px;
+		font-weight: 200;
+	}
+}
+
+.folio {
+	margin: 50px 0px;
+	h1 {
+		font-family: "HelveticaNeue-UltraLight", "Helvetica Neue Ultra Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-size: 70px;
+		font-weight: 300;
+	}
+}
+
+.project {
+	.drop-shadow(-1px, 0px, 2px, 0.2);
+	margin-top: 50px;
+	background-color: #eee;
+
+	img {
+		width: 300px;
+	}
+}
+
+.project-meta {
+	padding: 10px;
+
+	.project-tag-container a {
+		font-size: 10px;
+		display: inline-block;
+		padding: 3px;
+		border: 1px solid #ccc;
+		margin: 3px;
+		color: @grayDark;
+	}
+
+	.project-tag-container a:hover {
+		text-decoration: none;
+		background-color: darken(#eee, 15%);
+	}
+}
