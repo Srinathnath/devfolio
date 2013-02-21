@@ -4,14 +4,19 @@ block content
 	div.folio
 		div.container
 			h1 #{folio.firstName} #{folio.lastName}
-			- for (var i=0; i<3; i++)
+			- var count = 5
+			- var rowCount = Math.floor(count / 3)
+			- if (count % 3 !== 0) rowCount++
+			- for (var i=0; i<rowCount; i++)
 				div.row-fluid
-					- for (var j=0; j<3; j++)
+					- var stopTab = 3
+					- if (i == rowCount - 1) stopTab = 3 - ((rowCount * 3) - count)
+					- for (var j=0; j<stopTab; j++)
 						div.span4.project
 							a(href="/hunterclarke")
 								img(src="http://dummyimage.com/300x225/4d494d/686a82.gif&text=placeholder+image")
 							div.project-meta
-								p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+								p #{i}*3 + #{j} = #{i*3+j} Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 								span.project-tag-container
 									a.project-tag(href="#") Ruby
 								span.project-tag-container
