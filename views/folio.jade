@@ -31,22 +31,15 @@ block content
 						i.icon-edit.icon-large.edit-avatar
 						img.avatar(src="/images/me.jpeg")
 
-			
-
-			- var count = 10
-			- var rowCount = Math.floor(count / 3)
-			- if (count % 3 !== 0) rowCount++
-			- for (var i=0; i<rowCount; i++)
+			- var rows = [[1, 2, 3], [4, 5, 6], [7,8]];
+			- for (var row in rows)
 				div.row-fluid
-					- var stopTab = 3
-					- if (i == rowCount - 1) stopTab = 3 - ((rowCount * 3) - count)
-					- for (var j=0; j<stopTab; j++)
+					- for (var project in rows[row])
 						div.span4.project
-							// TODO put project url here
 							a(href="/hunterclarke")
 								img(src="http://dummyimage.com/300x225/4d494d/686a82.gif&text=project+image")
 							div.project-meta
-								p #{i*3+j} Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+								p #{project} Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 								span.project-tag-container
 									a.project-tag(href="") Ruby
 								span.project-tag-container
