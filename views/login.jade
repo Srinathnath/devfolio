@@ -1,4 +1,4 @@
-extends header
+extends layout
 
 block content
 	.container
@@ -12,10 +12,10 @@ block content
 			form.login-form(method="post", action="/login")
 				div.text-input
 					label(for="user[email]") Email:
-					input(type="text", name="email", data-type="email", data-required="true", data-remote="/validate_email", data-remote-method="POST")
+					input(type="text", name="email")
 
 				div.text-input
 					label(for="user[password]") Password:
-					input(type="password", name="password", data-required="true")
+					input(type="password", name="password")
 				div
 					input.btn.btn-success.submit-input(type="submit", value="Log In")

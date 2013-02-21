@@ -1,10 +1,39 @@
-extends header
+extends layout
+
+block scripts
+	script(src="/javascripts/lib/jquery-1.9.1.min.js")
+	script(src="/javascripts/devfolio.js")
+	if editingEnabled
+		script(src="/javascripts/lib/jcrop.min.js")
+		script(src="/javascripts/lib/bootstrap.min.js")
+		script(src="/javascripts/edit.js")
 
 block content
 	div.folio
 		div.container
-			h1 #{folio.firstName} #{folio.lastName}
-			- var count = 5
+			div.row-fluid
+				div.span8.personal-info
+					div.row-fluid
+						h1 #{folio.firstName} #{folio.lastName}
+					div.row-fluid.social-icons
+							a.span3(href="mailto:hunter@hunterc.com")
+								i.icon-envelope-alt.icon-4x
+							a.span3(href="http://github.com/hclarke3")
+								i.icon-github.icon-4x
+							a.span3(href="http://twitter.com/hunterclarke")
+								i.icon-twitter.icon-4x
+							a.span3(href="http://www.linkedin.com/pub/hunter-clarke/22/a03/682/")
+								i.icon-linkedin.icon-4x
+					div.row-fluid
+						p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+				div.span4
+					div.avatar-container
+						i.icon-edit.icon-large.edit-avatar
+						img.avatar(src="/images/me.jpeg")
+
+			
+
+			- var count = 10
 			- var rowCount = Math.floor(count / 3)
 			- if (count % 3 !== 0) rowCount++
 			- for (var i=0; i<rowCount; i++)
@@ -13,17 +42,18 @@ block content
 					- if (i == rowCount - 1) stopTab = 3 - ((rowCount * 3) - count)
 					- for (var j=0; j<stopTab; j++)
 						div.span4.project
+							// TODO put project url here
 							a(href="/hunterclarke")
-								img(src="http://dummyimage.com/300x225/4d494d/686a82.gif&text=placeholder+image")
+								img(src="http://dummyimage.com/300x225/4d494d/686a82.gif&text=project+image")
 							div.project-meta
-								p #{i}*3 + #{j} = #{i*3+j} Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+								p #{i*3+j} Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 								span.project-tag-container
-									a.project-tag(href="#") Ruby
+									a.project-tag(href="") Ruby
 								span.project-tag-container
-									a.project-tag(href="#") Ruby on Rails
+									a.project-tag(href="") Ruby on Rails
 								span.project-tag-container
-									a.project-tag(href="#") Javascript
+									a.project-tag(href="") Javascript
 								span.project-tag-container
-									a.project-tag(href="#") HTML5
+									a.project-tag(href="") HTML5
 								span.project-tag-container
-									a.project-tag(href="#") Node.js
+									a.project-tag(href="") Node.js

@@ -4,14 +4,12 @@
  */
 
 var express = require('express')
-,   routes = require('./routes')
 ,   http = require('http')
 ,   path = require('path')
 ,   flash = require('connect-flash')
 ,   passport = require('passport')
 ,   localStrategy = require('passport-local').Strategy
 ,   sessionHandler = require('./lib/session')
-,   exec = require('child_process').exec
 ,   mongoose = require('mongoose');
 
 
@@ -40,11 +38,11 @@ app.configure('development', function() {
 });
 
 if (app.settings.env == 'development') {
-     /*
-      * Connect to local Mongo in dev
-      */
-    mongoose.connect('mongodb://localhost/devfolio');
+    app.set('hosted image url', './tmp');
+    app.set('db url', 'mongodb://localhost/devfolio');
 }
+
+mongoose.connect(app.get('db url'));
 
 /*
  * Set up Passport
@@ -52,6 +50,12 @@ if (app.settings.env == 'development') {
 passport.serializeUser(sessionHandler.serialize);
 passport.deserializeUser(sessionHandler.deserialize);
 passport.use(sessionHandler.localStrategy);
+
+/*
+ * Load Routes
+ */
+
+var routes = require('./routes')({ app: app });
 
 /*
  * Static Routes

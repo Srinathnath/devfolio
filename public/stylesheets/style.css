@@ -7182,9 +7182,6 @@ a.badge:focus {
   font-weight: 300;
 }
 .project {
-  -webkit-box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.2);
   margin-top: 50px;
   background-color: #eee;
 }
@@ -7205,4 +7202,37 @@ a.badge:focus {
 .project-meta .project-tag-container a:hover {
   text-decoration: none;
   background-color: #c8c8c8;
+}
+.personal-info {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.personal-info h1 {
+  margin-bottom: 40px;
+}
+.social-icons {
+  color: #555555;
+  margin-bottom: 40px;
+}
+.social-icons a {
+  color: #555555;
+}
+.social-icons a:hover {
+  text-decoration: none;
+}
+.avatar {
+  width: 300px;
+  height: 300px;
+}
+.avatar-container {
+  position: relative;
+}
+.avatar-container .edit-avatar {
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  display: inline;
+  top: 5px;
+  right: 5px;
+  display: none;
 }
