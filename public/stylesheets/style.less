@@ -154,13 +154,36 @@
 	}
 }
 
+.project-list {
+	margin: 0px;
+	height: 100%;
+}
+
 .project {
-	margin-top: 50px;
+	margin-top: 30px;
 	background-color: #eee;
+	margin-right: 13px;
+	margin-left: 0px;
+	list-style: none;
 
 	img {
 		width: 300px;
 	}
+}
+
+.new-project {
+	a, a:hover {
+		color: @grayDark;
+		text-decoration: none;
+	}
+
+	margin-top: 30px;
+	margin-right: 13px;
+	margin-left: 0px;
+	list-style: none;
+	text-align: center;
+	height: 100%;
+	padding-top: 150px;
 }
 
 .project-meta {
@@ -177,6 +200,7 @@
 
 	.project-tag-container a:hover {
 		text-decoration: none;
+		cursor: default;
 		background-color: darken(#eee, 15%);
 	}
 }
@@ -189,11 +213,23 @@
 	line-height: 1.5;
 }
 
-.social-icons {
+.social-container {
+	position: relative;
 	color: @gray;
 	margin-bottom: 40px;
 
-	a {
+	.edit-social {
+		color: @grayDark;
+		cursor: pointer;
+		position: absolute;
+		display: inline;
+		top: 5px;
+		left: -25px;
+		display: none;
+	}
+
+	a.span3 {
+		margin-left: 0px;
 		color: @gray;
 	}
 
@@ -216,9 +252,22 @@
 		color: @grayDark;
 		cursor: pointer;
 		position: absolute;
-		display: inline;
 		top: 5px;
 		right: 5px;
 		display: none;
+	}
+}
+
+
+.profile-description-container {
+	position: relative;
+
+	.edit-profile-description {
+		color: @grayDark;
+		cursor: pointer;
+		display: none;
+		position: absolute;
+		top: 3px;
+		left: -25px;
 	}
 }

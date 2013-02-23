@@ -7181,12 +7181,33 @@ a.badge:focus {
   font-size: 70px;
   font-weight: 300;
 }
+.project-list {
+  margin: 0px;
+  height: 100%;
+}
 .project {
-  margin-top: 50px;
+  margin-top: 30px;
   background-color: #eee;
+  margin-right: 13px;
+  margin-left: 0px;
+  list-style: none;
 }
 .project img {
   width: 300px;
+}
+.new-project {
+  margin-top: 30px;
+  margin-right: 13px;
+  margin-left: 0px;
+  list-style: none;
+  text-align: center;
+  height: 100%;
+  padding-top: 150px;
+}
+.new-project a,
+.new-project a:hover {
+  color: #333333;
+  text-decoration: none;
 }
 .project-meta {
   padding: 10px;
@@ -7201,6 +7222,7 @@ a.badge:focus {
 }
 .project-meta .project-tag-container a:hover {
   text-decoration: none;
+  cursor: default;
   background-color: #c8c8c8;
 }
 .personal-info {
@@ -7210,14 +7232,25 @@ a.badge:focus {
 .personal-info h1 {
   margin-bottom: 40px;
 }
-.social-icons {
+.social-container {
+  position: relative;
   color: #555555;
   margin-bottom: 40px;
 }
-.social-icons a {
+.social-container .edit-social {
+  color: #333333;
+  cursor: pointer;
+  position: absolute;
+  display: inline;
+  top: 5px;
+  left: -25px;
+  display: none;
+}
+.social-container a.span3 {
+  margin-left: 0px;
   color: #555555;
 }
-.social-icons a:hover {
+.social-container a:hover {
   text-decoration: none;
 }
 .avatar {
@@ -7235,8 +7268,18 @@ a.badge:focus {
   color: #333333;
   cursor: pointer;
   position: absolute;
-  display: inline;
   top: 5px;
   right: 5px;
   display: none;
+}
+.profile-description-container {
+  position: relative;
+}
+.profile-description-container .edit-profile-description {
+  color: #333333;
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 3px;
+  left: -25px;
 }

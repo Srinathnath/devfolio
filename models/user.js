@@ -8,8 +8,28 @@ var UserSchema = mongoose.Schema({
 	email: { type: String, required: true, index: { unique: true }},
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true },
+	description: { type: String },
+	social: {
+		email: {
+			display: Boolean
+		},
+		github: {
+			url: String,
+			display: Boolean
+		},
+		twitter: {
+			url: String,
+			display: Boolean
+		},
+		linkedin: {
+			url: String,
+			display: Boolean
+		}
+	},
+	avatar_url: String,
 	linkedin_id: String,
-	github_id: String
+	github_id: String,
+	created_at: { type: Date, default: Date.now }
 });
 
 UserSchema.pre('save', function(next) {

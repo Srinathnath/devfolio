@@ -103,10 +103,11 @@ var routes = function(params) {
 		User.findOne({ username: req.params.username }, function(err, user) {
 			if (!user)
 				res.send(404);
-			else
+			else {
 				// Allow users to edit their own pages.
 				editingEnabled = typeof(req.user) != 'undefined' && req.user.id === user.id;
 				res.render('folio', { req: req, folio: user, editingEnabled: editingEnabled});		
+			}
 		});
 	};
 
