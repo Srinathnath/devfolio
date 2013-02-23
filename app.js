@@ -91,6 +91,7 @@ app.get('/dash', sessionHandler.verifyLoggedIn, routes.dash);
  * Folio Routes
  */
 app.get('/:username', routes.folio);
+app.post('/:username', sessionHandler.verifyLoggedIn, routes.editUser);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log("Express server listening on port " + app.get('port'));

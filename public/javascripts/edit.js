@@ -23,7 +23,21 @@ $(function() {
 	});
 
 	$('.edit-profile-description').click(function() {
-		$('#edit-profile-description-modal').modal({ backdrop: false });
+		$('#edit-profile-description-modal').modal({ 
+			backdrop: true,
+			keyboard: true,
+			show: true 
+		});
+	});
+
+	$('.submit-profile-description').click(function() {
+		var url = $('.edit-profile-description-form').attr('action');
+		var desc = $('.edit-profile-description-form textarea').val();
+		var data = { description: desc };
+		$.post(url, data, function(user) {
+			$('.profile-description-container p').html(user.description);
+			$('#edit-profile-description-modal').modal('hide');
+		}, 'json');
 	});
 
 	// Edit social
@@ -42,7 +56,7 @@ $(function() {
 
 	$('.project-list').sortable({items: ".project"});
 
-	$('.add-project-link').click(function() {
+	$('.new-project-link').click(function() {
 		//TODO Implement
 		return false;
 	});

@@ -97,7 +97,7 @@ var routes = function(params) {
 
 
 	/*
-	 * GET a folio page.
+	 * User routes
 	 */
 	routes.folio = function(req, res) {
 		User.findOne({ username: req.params.username }, function(err, user) {
@@ -110,6 +110,12 @@ var routes = function(params) {
 			}
 		});
 	};
+
+	routes.editUser = function(req, res) {
+		User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+			res.json(user);
+		});
+	}
 
 	return routes;
 }
