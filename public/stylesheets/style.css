@@ -6070,18 +6070,26 @@ a.badge:focus {
   width: 515px;
   height: 150px;
 }
-.no-description-container {
-  background-color: #999999;
+.empty-container {
+  background-color: rgba(100, 100, 100, 0.3);
   border: 1px solid #333333;
   padding: 50px;
+  margin-right: 50px;
   text-align: center;
 }
-.no-description-container a {
+.empty-container a {
   color: #333333;
   width: 210px;
   margin: 30px auto;
 }
-.no-description-container a:hover {
+.empty-container a:hover {
   color: #333333;
   text-decoration: none;
+}
+#edit-social-modal .modal-body h3 {
+  font-size: 14px;
+}
+input.edit-social-input {
+  height: 14px;
+  vertical-align: top;
 }

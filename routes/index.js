@@ -112,7 +112,12 @@ var routes = function(params) {
 	};
 
 	routes.editUser = function(req, res) {
+		if (req.body.social) {
+			for(social in req.body.social)
+				req.body.social[social].display = (req.body.social[social].display == 'true') ? true : false;
+		}
 		User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+			console.log(user);
 			res.json(user);
 		});
 	}

@@ -11,19 +11,19 @@ var UserSchema = mongoose.Schema({
 	description: { type: String },
 	social: {
 		email: {
-			display: Boolean
+			display: { type: Boolean, default: false }
 		},
 		github: {
 			url: String,
-			display: Boolean
+			display: { type: Boolean, default: false }
 		},
 		twitter: {
 			url: String,
-			display: Boolean
+			display: { type: Boolean, default: false }
 		},
 		linkedin: {
 			url: String,
-			display: Boolean
+			display: { type: Boolean, default: false }
 		}
 	},
 	avatar_url: String,

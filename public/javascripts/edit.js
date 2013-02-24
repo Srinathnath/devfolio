@@ -29,8 +29,7 @@ $(function() {
 
 	$('.submit-profile-description').click(function() {
 		var url = $('.edit-profile-description-form').attr('action');
-		var desc = $('.edit-profile-description-form textarea').val();
-		var data = { description: desc };
+		var data = { description: $('.edit-profile-description-form textarea').val() };
 		$.post(url, data, function(user) {
 			$('#edit-profile-description-modal').modal('hide');
 			window.location.reload();
@@ -46,9 +45,38 @@ $(function() {
 		$('.edit-social').fadeOut({ duration: 100 });
 	});
 
-	$('.edit-social').click(function() {
+	$('.edit-social, .no-social').click(function() {
 		event.preventDefault();
 		$('#edit-social-modal').modal();
+	});
+
+	$('.submit-social').click(function() {
+		var url = $('.edit-social-form').attr('action');
+		var data = {
+			social: {
+				email: {
+					display: $('#social-email-switch').bootstrapSwitch('status')
+				},
+				github: {
+					display: $('#social-github-switch').bootstrapSwitch('status'),
+					url: $('#social-github-url').val()
+				},
+				twitter: {
+					display: $('#social-twitter-switch').bootstrapSwitch('status'),
+					url: $('#social-twitter-url').val()
+				},
+				linkedin: {
+					display: $('#social-linkedin-switch').bootstrapSwitch('status'),
+					url: $('#social-linkedin-url').val()
+				}
+			}
+		};
+
+		console.log(data);
+		$.post(url, data, function(user) {
+			$('#edit-profile-description-modal').modal('hide');
+			window.location.reload();
+		}, 'json');
 	});
 
 	$('.project-list').sortable({items: ".project"});

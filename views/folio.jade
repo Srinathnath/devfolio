@@ -6,8 +6,14 @@ block scripts
 	if editingEnabled
 		script(src="/javascripts/lib/jquery-ui-1.10.1.custom.min.js")
 		script(src="/javascripts/lib/jcrop.min.js")
+		script(src="/javascripts/lib/bootstrapSwitch.js")
 		script(src="/javascripts/lib/bootstrap.min.js")
 		script(src="/javascripts/edit.js")
+
+block stylesheets
+	if editingEnabled
+		link(rel="stylesheet", type="text/css", href="/stylesheets/bootstrapSwitch.css")
+
 
 mixin editProfileDescription
 	div#edit-profile-description-modal.modal.hide.fade(aria-hidden="true", tabindex="-1")
@@ -15,7 +21,7 @@ mixin editProfileDescription
 			button.close(data-dismiss="modal", aria-hidden="true", type="button") x
 			h3 Edit Description
 		div.modal-body
-			form.edit-profile-description-form(method="post", action="/"+folio.username)
+			form.edit-profile-description-form(method="post", action="/"+req.user.username)
 				textarea(name="description")= folio.description
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Cancel
@@ -27,7 +33,67 @@ mixin editSocial
 			button.close(data-dismiss="modal", aria-hidden="true", type="button") x
 			h3 Edit Social Links
 		div.modal-body
-			p Put form here.
+			form.edit-social-form(method="post", action="/"+req.user.username)
+			div.row-fluid
+				div.span2
+					h3 Service
+				div.span3
+					h3 Show
+				div.span7
+					h3 URL
+			div.row-fluid.edit-social-email
+				div.span2
+					p 
+						i.icon-envelope-alt
+						|  Email
+				div.span3
+					div.switch.switch-mini#social-email-switch
+						if req.user.social.email.display
+							input(type="checkbox", checked)
+						else
+							input(type="checkbox")
+				div.span7
+					input.edit-social-input(type="text", name="", value=req.user.email, disabled)
+			div.row-fluid.edit-social-github
+				div.span2
+					p 
+						i.icon-github
+						|  Github
+				div.span3
+					div.switch.switch-mini#social-github-switch
+						if req.user.social.github.display
+							input(type="checkbox", checked)
+						else
+							input(type="checkbox")
+				div.span7
+					input.edit-social-input#social-github-url(type="text", name="", value=req.user.social.github.url)
+			div.row-fluid.edit-social-twitter
+				div.span2
+					p 
+						i.icon-twitter
+						|  Twitter
+				div.span3
+					div.switch.switch-mini#social-twitter-switch
+						if req.user.social.twitter.display
+							input(type="checkbox", checked)
+						else
+							input(type="checkbox")
+				div.span7
+					input.edit-social-input#social-twitter-url(type="text", name="", value=req.user.social.twitter.url)
+			div.row-fluid.edit-social-linkedin
+				div.span2
+					p 
+						i.icon-linkedin
+						|  LinkedIn
+				div.span3
+					div.switch.switch-mini#social-linkedin-switch
+						if req.user.social.linkedin.display
+							input(type="checkbox", checked)
+						else
+							input(type="checkbox")
+				div.span7
+					input.edit-social-input#social-linkedin-url(type="text", name="", value=req.user.social.linkedin.url)
+
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Cancel
 			button.btn.btn-primary.submit-social Save Changes
@@ -46,21 +112,35 @@ block content
 						if folio.description
 							p= folio.description
 						else if !folio.description && editingEnabled
-							div.no-description-container
+							div.empty-container
 								a.no-description(href="") 
 									i.icon-plus
 									|  Add a little about yourself here
 					div.row-fluid.social-container
+						- var anySocial = false;
 						if editingEnabled
 							i.icon-edit.icon-large.edit-social
-						a.span3(href="mailto:hunter@hunterc.com")
-							i.icon-envelope-alt.icon-4x
-						a.span3(href="http://github.com/hclarke3")
-							i.icon-github.icon-4x
-						a.span3(href="http://twitter.com/hunterclarke")
-							i.icon-twitter.icon-4x
-						a.span3(href="http://www.linkedin.com/pub/hunter-clarke/22/a03/682/")
-							i.icon-linkedin.icon-4x
+						if folio.social.email.display
+							- anySocial = true
+							a.span3(href="mailto:"+folio.email)
+								i.icon-envelope-alt.icon-4x
+						if folio.social.github.display && folio.social.github.url
+							- anySocial = true
+							a.span3(href=folio.social.github.url)
+								i.icon-github.icon-4x
+						if folio.social.twitter.display && folio.social.twitter.url
+							- anySocial = true
+							a.span3(href=folio.social.twitter.url)
+								i.icon-twitter.icon-4x
+						if folio.social.linkedin.display && folio.social.linkedin.url
+							- anySocial = true
+							a.span3(href=folio.social.linkedin.url)
+								i.icon-linkedin.icon-4x
+						if anySocial == false && editingEnabled
+							div.empty-container
+								a.no-social(href="")
+									i.icon-plus
+									| Add a few social media links here
 
 				div.span4.avatar-container
 						if editingEnabled
@@ -89,6 +169,6 @@ block content
 						a.new-project-link(href="")
 							i.icon-plus-sign.icon-4x
 							p.new-project-text New Project
-
-	mixin editProfileDescription
-	mixin editSocial
+	if editingEnabled
+		mixin editProfileDescription
+		mixin editSocial

@@ -278,10 +278,11 @@
 	}
 }
 
-.no-description-container {
-	background-color: @grayLight;
+.empty-container {
+	background-color: rgba(100, 100, 100, 0.3);
 	border: 1px solid @grayDark;
 	padding: 50px;
+	margin-right: 50px;
 	text-align: center;
 
 	a {
@@ -294,4 +295,17 @@
 		color: @grayDark;
 		text-decoration: none;
 	}
+}
+
+#edit-social-modal {
+	.modal-body {
+		h3 {
+			font-size: 14px;
+		}
+	}
+}
+
+input.edit-social-input {
+	height: 14px;
+	vertical-align: top;
 }
