@@ -22,12 +22,9 @@ $(function() {
 		$('.edit-profile-description').fadeOut({ duration: 100 });
 	});
 
-	$('.edit-profile-description').click(function() {
-		$('#edit-profile-description-modal').modal({ 
-			backdrop: true,
-			keyboard: true,
-			show: true 
-		});
+	$('.edit-profile-description, .no-description').click(function(event) {
+		event.preventDefault();
+		$('#edit-profile-description-modal').modal();
 	});
 
 	$('.submit-profile-description').click(function() {
@@ -35,8 +32,8 @@ $(function() {
 		var desc = $('.edit-profile-description-form textarea').val();
 		var data = { description: desc };
 		$.post(url, data, function(user) {
-			$('.profile-description-container p').html(user.description);
 			$('#edit-profile-description-modal').modal('hide');
+			window.location.reload();
 		}, 'json');
 	});
 
@@ -50,9 +47,9 @@ $(function() {
 	});
 
 	$('.edit-social').click(function() {
-		// TODO Implement
-		return false;
-	})
+		event.preventDefault();
+		$('#edit-social-modal').modal();
+	});
 
 	$('.project-list').sortable({items: ".project"});
 

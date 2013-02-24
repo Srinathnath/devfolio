@@ -21,6 +21,18 @@ mixin editProfileDescription
 			button.btn(data-dismiss="modal", aria-hidden="true") Cancel
 			button.btn.btn-primary.submit-profile-description Save Changes
 
+mixin editSocial
+	div#edit-social-modal.modal.hide.fade(aria-hidden="true", tabindex="-1")
+		div.modal-header
+			button.close(data-dismiss="modal", aria-hidden="true", type="button") x
+			h3 Edit Social Links
+		div.modal-body
+			p Put form here.
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Cancel
+			button.btn.btn-primary.submit-social Save Changes
+
+
 block content
 	div.folio
 		div.container
@@ -28,6 +40,16 @@ block content
 				div.span8.personal-info
 					div.row-fluid
 						h1 #{folio.firstName} #{folio.lastName}
+					div.row-fluid.profile-description-container
+						if editingEnabled
+							i.icon-edit.icon-large.edit-profile-description
+						if folio.description
+							p= folio.description
+						else if !folio.description && editingEnabled
+							div.no-description-container
+								a.no-description(href="") 
+									i.icon-plus
+									|  Add a little about yourself here
 					div.row-fluid.social-container
 						if editingEnabled
 							i.icon-edit.icon-large.edit-social
@@ -39,10 +61,7 @@ block content
 							i.icon-twitter.icon-4x
 						a.span3(href="http://www.linkedin.com/pub/hunter-clarke/22/a03/682/")
 							i.icon-linkedin.icon-4x
-					div.row-fluid.profile-description-container
-						if editingEnabled
-							i.icon-edit.icon-large.edit-profile-description
-						p= folio.description
+
 				div.span4.avatar-container
 						if editingEnabled
 							i.icon-edit.icon-large.edit-avatar
@@ -72,3 +91,4 @@ block content
 							p.new-project-text New Project
 
 	mixin editProfileDescription
+	mixin editSocial
