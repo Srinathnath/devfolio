@@ -38,7 +38,7 @@ app.configure('development', function() {
 });
 
 if (app.settings.env == 'development') {
-    app.set('hosted image url', './tmp');
+    app.set('hosted image url', __dirname+'/public/images');
     app.set('db url', 'mongodb://localhost/devfolio');
 }
 
@@ -90,6 +90,7 @@ app.get('/dash', sessionHandler.verifyLoggedIn, routes.dash);
 /*
  * Folio Routes
  */
+app.post('/avatar', sessionHandler.verifyLoggedIn, routes.addAvatar);
 app.get('/:username', routes.folio);
 app.post('/:username', sessionHandler.verifyLoggedIn, routes.editUser);
 

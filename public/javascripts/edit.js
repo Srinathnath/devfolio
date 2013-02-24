@@ -1,4 +1,12 @@
+function updatePreview(coords) {
+	
+}
+
 $(function() {
+
+	var boundx,
+		boundy;
+
 	// Edit avatar
 	$('.avatar-container').hover(function() {
 		$('.edit-avatar').fadeIn({ duration: 100 });
@@ -9,8 +17,11 @@ $(function() {
 	});
 
 	$('.edit-avatar').click(function() {
-		//TODO Implement
-		return false;
+		event.preventDefault();
+		$('#edit-avatar-modal').modal();
+	});
+
+	$('input.avatar-upload').change(function(event) {
 	});
 
 	// Edit profile description
@@ -72,12 +83,52 @@ $(function() {
 			}
 		};
 
-		console.log(data);
 		$.post(url, data, function(user) {
 			$('#edit-profile-description-modal').modal('hide');
 			window.location.reload();
 		}, 'json');
 	});
+
+	$('.avatar-upload').fileupload({
+		dataType: 'json',
+		done: function(e, data) {
+			var actualwidth = data.result.width;
+			var actualheight = data.result.height;
+			var crop = document.createElement('img');
+			crop.src = data.result.path;
+			crop.id = 'avatar-to-crop';
+		
+			$('.avatar-upload-container').html(crop);
+			$('.avatar-preview').attr('src', data.result.path);
+			$('.avatar-preview').attr('class', 'avatar-previewing');
+
+			$('#avatar-to-crop').Jcrop({
+				onChange: updatePreview,
+				onSelect: updatePreview,
+				aspectRatio: 1
+			}, function() {
+				var bounds = this.getBounds();
+				boundx = bounds[0];
+				boundy = bounds[1];
+			});
+		}
+	});
+
+	function updatePreview(c) {
+		if (parseInt(c.w) > 0) {
+			var rx = $('#preview-container').width() / c.w;
+			var ry = $('#preview-container').height() / c.h;
+
+			console.log(c);
+
+			$('.avatar-previewing').css({
+				width: Math.round(rx * boundx) + 'px',
+				height: Math.round(ry * boundy) + 'px',
+				marginLeft: '-' + Math.round(rx * c.x) + 'px',
+				marginTop: '-' + Math.round(ry * c.y) + 'px'
+			});
+		}
+	}
 
 	$('.project-list').sortable({items: ".project"});
 

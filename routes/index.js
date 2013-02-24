@@ -1,5 +1,6 @@
 var UserModel = require('../models/User.js')
-,	mongoose = require('mongoose');
+,	mongoose = require('mongoose')
+,	fs = require('fs');
 
 var routes = function(params) {
 	app = params.app;
@@ -99,6 +100,24 @@ var routes = function(params) {
 	/*
 	 * User routes
 	 */
+
+	routes.addAvatar = function(req, res) {
+		var avatarpath = req.files.avatar.path;
+		var type = req.files.avatar.type.split('/');
+		if (type[0] != 'image')
+			res.json('error');
+		else {
+			fs.readFile(avatarpath, function(err, data) {
+				var newpath = app.get('hosted image url')+avatarpath+'.'+type[1];
+				fs.writeFile(newpath, data, function(err) {
+					res.json({ 
+						path: '/images'+avatarpath+'.'+type[1],
+					});	
+				});
+			});
+		}
+	};
+
 	routes.folio = function(req, res) {
 		User.findOne({ username: req.params.username }, function(err, user) {
 			if (!user)

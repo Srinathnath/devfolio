@@ -13,6 +13,7 @@
     "mongoose": "*",
     "less-middleware": "*",
     "passport": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "imagemagick": "*"
   }
 }

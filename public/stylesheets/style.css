@@ -6093,3 +6093,43 @@ input.edit-social-input {
   height: 14px;
   vertical-align: top;
 }
+#edit-avatar-modal {
+  width: 700px;
+  margin-left: -350px;
+}
+.avatar-preview-container {
+  *zoom: 1;
+}
+.avatar-preview-container:before,
+.avatar-preview-container:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.avatar-preview-container:after {
+  clear: both;
+}
+.avatar-preview-container h3 {
+  color: #999999;
+  font-size: 14px;
+  line-height: 0px;
+  font-weight: 300;
+}
+.avatar-preview-container #preview-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+}
+.avatar-preview-container #preview-container .avatar-previewing {
+  max-width: none;
+}
+.avatar-upload-container {
+  border-left: 1px solid #eeeeee;
+  padding-left: 30px;
+}
+.avatar-upload-container .avatar-upload {
+  line-height: 18px;
+}

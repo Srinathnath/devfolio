@@ -5,13 +5,16 @@ block scripts
 	script(src="/javascripts/devfolio.js")
 	if editingEnabled
 		script(src="/javascripts/lib/jquery-ui-1.10.1.custom.min.js")
-		script(src="/javascripts/lib/jcrop.min.js")
+		script(src="/javascripts/lib/jcrop.js")
 		script(src="/javascripts/lib/bootstrapSwitch.js")
 		script(src="/javascripts/lib/bootstrap.min.js")
+		script(src="/javascripts/lib/iframe-transport.js")
+		script(src="/javascripts/lib/fileupload.js")
 		script(src="/javascripts/edit.js")
 
 block stylesheets
 	if editingEnabled
+		link(rel="stylesheet", type="text/css", href="/stylesheets/jcrop.min.css")
 		link(rel="stylesheet", type="text/css", href="/stylesheets/bootstrapSwitch.css")
 
 
@@ -26,6 +29,24 @@ mixin editProfileDescription
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Cancel
 			button.btn.btn-primary.submit-profile-description Save Changes
+
+mixin editAvatar
+	div#edit-avatar-modal.modal.hide.fade(aria-hidden="true", tabindex="-1")
+		div.modal-header
+			button.close(data-dismiss="modal", aria-hidden="true", type="button") x
+			h3 Edit Description
+		div.modal-body
+			div.row-fluid
+				div.span4.avatar-preview-container
+					h3 Preview
+					div#preview-container
+						img.avatar-preview(src="/images/me.jpeg")
+				div.span8.avatar-upload-container
+					input.avatar-upload(type="file", name="avatar", data-url="/avatar")
+						i.icon-upload Choose File
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Cancel
+			button.btn.btn-primary.submit-avatar Save Changes
 
 mixin editSocial
 	div#edit-social-modal.modal.hide.fade(aria-hidden="true", tabindex="-1")
@@ -171,4 +192,5 @@ block content
 							p.new-project-text New Project
 	if editingEnabled
 		mixin editProfileDescription
+		mixin editAvatar
 		mixin editSocial

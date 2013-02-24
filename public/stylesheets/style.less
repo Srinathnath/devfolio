@@ -309,3 +309,38 @@ input.edit-social-input {
 	height: 14px;
 	vertical-align: top;
 }
+
+#edit-avatar-modal {
+	width: 700px;
+	margin-left: -350px;
+}
+
+.avatar-preview-container {
+	.clearfix();
+	h3 {
+		color: @grayLight;
+		font-size: 14px;
+		line-height: 0px;
+		font-weight: 300;
+	}
+
+	#preview-container {
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		.border-radius(100%);
+
+		.avatar-previewing {
+			max-width: none;
+		}
+	}
+}
+
+.avatar-upload-container {
+	border-left: 1px solid @grayLighter;
+	padding-left: 30px;
+
+	.avatar-upload {
+		line-height: 18px;
+	}
+}
