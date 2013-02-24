@@ -281,12 +281,13 @@
 .empty-container {
 	background-color: rgba(100, 100, 100, 0.3);
 	border: 1px solid @grayDark;
-	padding: 50px;
+	padding: 30px;
 	margin-right: 50px;
 	text-align: center;
+	.border-radius(5px);
 
 	a {
-		color: @grayDark;
+		color: @grayLight;
 		width: 210px;
 		margin: 30px auto;
 	}
@@ -313,16 +314,18 @@ input.edit-social-input {
 #edit-avatar-modal {
 	width: 700px;
 	margin-left: -350px;
-}
 
-.avatar-preview-container {
-	.clearfix();
-	h3 {
+	.modal-body h3 {
 		color: @grayLight;
 		font-size: 14px;
 		line-height: 0px;
 		font-weight: 300;
 	}
+}
+
+
+.avatar-preview-container {
+	.clearfix();
 
 	#preview-container {
 		width: 200px;
@@ -333,14 +336,42 @@ input.edit-social-input {
 		.avatar-previewing {
 			max-width: none;
 		}
-	}
+	};
 }
 
-.avatar-upload-container {
+.span8.avatar-upload-container {
 	border-left: 1px solid @grayLighter;
 	padding-left: 30px;
+	min-height: 250px;
 
 	.avatar-upload {
 		line-height: 18px;
 	}
+}
+
+.no-avatar {
+	width: 300px;
+	height: 300px;
+	background-color: @grayLight;
+	.border-radius(100%);
+	text-align: center;
+	font-size: 200px;
+
+	 i {
+	 	position: relative;
+	 	top: 50px;
+	 }
+}
+
+.no-avatar-preview {
+	width: 200px;
+	height: 200px;
+	background-color: @grayLight;
+	text-align: center;
+	font-size: 100px;
+
+	 i {
+	 	position: relative;
+	 	top: 40px;
+	 }
 }

@@ -1,2 +1,5 @@
 node_modules
-public/images/tmp
+public/images/tmp/*
+!public/images/tmp/README.md
+public/images/avatar/*
+!public/images/avatar/README.md

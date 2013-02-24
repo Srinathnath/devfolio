@@ -90,7 +90,8 @@ app.get('/dash', sessionHandler.verifyLoggedIn, routes.dash);
 /*
  * Folio Routes
  */
-app.post('/avatar', sessionHandler.verifyLoggedIn, routes.addAvatar);
+app.post('/tmp/avatar', sessionHandler.verifyLoggedIn, routes.addAvatar);
+app.post('/upload', sessionHandler.verifyLoggedIn, routes.uploadAvatar);
 app.get('/:username', routes.folio);
 app.post('/:username', sessionHandler.verifyLoggedIn, routes.editUser);
 

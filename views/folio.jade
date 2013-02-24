@@ -34,16 +34,28 @@ mixin editAvatar
 	div#edit-avatar-modal.modal.hide.fade(aria-hidden="true", tabindex="-1")
 		div.modal-header
 			button.close(data-dismiss="modal", aria-hidden="true", type="button") x
-			h3 Edit Description
+			h3 Edit Picture
 		div.modal-body
 			div.row-fluid
 				div.span4.avatar-preview-container
 					h3 Preview
 					div#preview-container
-						img.avatar-preview(src="/images/me.jpeg")
+						if folio.avatar_id
+							img.avatar-preview(src="/images/avatar/"+folio.avatar_id)
+						else
+							div.no-avatar-preview
+								i.icon-user
 				div.span8.avatar-upload-container
-					input.avatar-upload(type="file", name="avatar", data-url="/avatar")
+					input.avatar-upload(type="file", name="avatar", data-url="/tmp/avatar")
 						i.icon-upload Choose File
+				form.hide.submit-avatar-form(method="post", action="/upload")
+					input.hide(name="tmpUrl")
+					input.hide(name="xoffset")
+					input.hide(name="yoffset")
+					input.hide(name="currwidth")
+					input.hide(name="currheight")
+					input.hide(name="newwidth")
+					input.hide(name="newheight")
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Cancel
 			button.btn.btn-primary.submit-avatar Save Changes
@@ -166,7 +178,11 @@ block content
 				div.span4.avatar-container
 						if editingEnabled
 							i.icon-edit.icon-large.edit-avatar
-						img.avatar(src="/images/me.jpeg")
+						if folio.avatar_id
+							img.avatar(src="/images/avatar/"+folio.avatar_id)
+						else
+							div.no-avatar
+								i.icon-user
 
 			ul.project-list
 				- for (var i=0; i<7; i++)

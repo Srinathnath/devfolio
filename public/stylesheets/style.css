@@ -6073,12 +6073,15 @@ a.badge:focus {
 .empty-container {
   background-color: rgba(100, 100, 100, 0.3);
   border: 1px solid #333333;
-  padding: 50px;
+  padding: 30px;
   margin-right: 50px;
   text-align: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 .empty-container a {
-  color: #333333;
+  color: #999999;
   width: 210px;
   margin: 30px auto;
 }
@@ -6097,6 +6100,12 @@ input.edit-social-input {
   width: 700px;
   margin-left: -350px;
 }
+#edit-avatar-modal .modal-body h3 {
+  color: #999999;
+  font-size: 14px;
+  line-height: 0px;
+  font-weight: 300;
+}
 .avatar-preview-container {
   *zoom: 1;
 }
@@ -6109,12 +6118,6 @@ input.edit-social-input {
 .avatar-preview-container:after {
   clear: both;
 }
-.avatar-preview-container h3 {
-  color: #999999;
-  font-size: 14px;
-  line-height: 0px;
-  font-weight: 300;
-}
 .avatar-preview-container #preview-container {
   width: 200px;
   height: 200px;
@@ -6126,10 +6129,36 @@ input.edit-social-input {
 .avatar-preview-container #preview-container .avatar-previewing {
   max-width: none;
 }
-.avatar-upload-container {
+.span8.avatar-upload-container {
   border-left: 1px solid #eeeeee;
   padding-left: 30px;
+  min-height: 250px;
 }
-.avatar-upload-container .avatar-upload {
+.span8.avatar-upload-container .avatar-upload {
   line-height: 18px;
+}
+.no-avatar {
+  width: 300px;
+  height: 300px;
+  background-color: #999999;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 200px;
+}
+.no-avatar i {
+  position: relative;
+  top: 50px;
+}
+.no-avatar-preview {
+  width: 200px;
+  height: 200px;
+  background-color: #999999;
+  text-align: center;
+  font-size: 100px;
+}
+.no-avatar-preview i {
+  position: relative;
+  top: 40px;
 }

@@ -26,7 +26,7 @@ var UserSchema = mongoose.Schema({
 			display: { type: Boolean, default: false }
 		}
 	},
-	avatar_url: String,
+	avatar_id: String,
 	linkedin_id: String,
 	github_id: String,
 	created_at: { type: Date, default: Date.now }

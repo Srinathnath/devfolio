@@ -4,9 +4,6 @@ function updatePreview(coords) {
 
 $(function() {
 
-	var boundx,
-		boundy;
-
 	// Edit avatar
 	$('.avatar-container').hover(function() {
 		$('.edit-avatar').fadeIn({ duration: 100 });
@@ -21,8 +18,68 @@ $(function() {
 		$('#edit-avatar-modal').modal();
 	});
 
-	$('input.avatar-upload').change(function(event) {
+	$('.submit-avatar').click(function() {
+		if (!$('.submit-avatar-form input[name="tmpUrl"]').val().length)
+			$('#edit-avatar-modal').modal('hide');
+		else {
+			$('.submit-avatar-form').submit();
+		}
 	});
+
+	var boundx,
+		boundy;
+
+	$('.avatar-upload').fileupload({
+		dataType: 'json',
+		add: function(e, data) {
+			data.context = $('<p/>').text('Uploading').appendTo(this);
+			data.submit();
+		},
+		done: function(e, data) {
+			var actualwidth = data.result.width;
+			var actualheight = data.result.height;
+			var crop = document.createElement('img');
+			crop.src = data.result.path;
+			crop.id = 'avatar-to-crop';
+			$('.submit-avatar-form input[name="tmpUrl"]').val(data.result.path);
+		
+			$('.avatar-upload-container').html(crop);
+			$('.avatar-upload-container').prepend('<h3>Click and Drag to Crop Your Image');
+			$('#preview-container').html('<img src="'+crop.src+'" class="avatar-preview">');
+			$('.avatar-preview').attr('class', 'avatar-previewing');
+
+			$('#avatar-to-crop').Jcrop({
+				onChange: updatePreview,
+				onSelect: updatePreview,
+				aspectRatio: 1
+			}, function() {
+				var bounds = this.getBounds();
+				boundx = bounds[0];
+				boundy = bounds[1];
+				$('.submit-avatar-form input[name="currwidth"]').val(boundx);
+				$('.submit-avatar-form input[name="currheight"]').val(boundy);
+			});
+		}
+	});
+
+	function updatePreview(c) {
+		if (parseInt(c.w) > 0) {
+			$('.submit-avatar-form input[name="xoffset"]').val(c.x);
+			$('.submit-avatar-form input[name="yoffset"]').val(c.y);
+			$('.submit-avatar-form input[name="newwidth"]').val(c.w);
+			$('.submit-avatar-form input[name="newheight"]').val(c.h);
+
+			var rx = $('#preview-container').width() / c.w;
+			var ry = $('#preview-container').height() / c.h;
+
+			$('.avatar-previewing').css({
+				width: Math.round(rx * boundx) + 'px',
+				height: Math.round(ry * boundy) + 'px',
+				marginLeft: '-' + Math.round(rx * c.x) + 'px',
+				marginTop: '-' + Math.round(ry * c.y) + 'px'
+			});
+		}
+	}
 
 	// Edit profile description
 	$('.profile-description-container').hover(function() {
@@ -88,47 +145,6 @@ $(function() {
 			window.location.reload();
 		}, 'json');
 	});
-
-	$('.avatar-upload').fileupload({
-		dataType: 'json',
-		done: function(e, data) {
-			var actualwidth = data.result.width;
-			var actualheight = data.result.height;
-			var crop = document.createElement('img');
-			crop.src = data.result.path;
-			crop.id = 'avatar-to-crop';
-		
-			$('.avatar-upload-container').html(crop);
-			$('.avatar-preview').attr('src', data.result.path);
-			$('.avatar-preview').attr('class', 'avatar-previewing');
-
-			$('#avatar-to-crop').Jcrop({
-				onChange: updatePreview,
-				onSelect: updatePreview,
-				aspectRatio: 1
-			}, function() {
-				var bounds = this.getBounds();
-				boundx = bounds[0];
-				boundy = bounds[1];
-			});
-		}
-	});
-
-	function updatePreview(c) {
-		if (parseInt(c.w) > 0) {
-			var rx = $('#preview-container').width() / c.w;
-			var ry = $('#preview-container').height() / c.h;
-
-			console.log(c);
-
-			$('.avatar-previewing').css({
-				width: Math.round(rx * boundx) + 'px',
-				height: Math.round(ry * boundy) + 'px',
-				marginLeft: '-' + Math.round(rx * c.x) + 'px',
-				marginTop: '-' + Math.round(ry * c.y) + 'px'
-			});
-		}
-	}
 
 	$('.project-list').sortable({items: ".project"});
 

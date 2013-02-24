@@ -1,6 +1,8 @@
 var UserModel = require('../models/User.js')
 ,	mongoose = require('mongoose')
-,	fs = require('fs');
+,	fs = require('fs')
+,	path = require('path')
+,	im = require('imagemagick');
 
 var routes = function(params) {
 	app = params.app;
@@ -117,6 +119,38 @@ var routes = function(params) {
 			});
 		}
 	};
+
+	routes.uploadAvatar = function(req,res) {
+		var params = req.body;
+		var tmpPath = params.tmpUrl.split('/');
+		tmpPath = imagename = tmpPath[tmpPath.length-1];
+		tmpPath = app.get('hosted image url')+'/tmp/'+tmpPath;
+
+		im.identify(tmpPath, function(err, features) {
+			var multx = features.width / params.currwidth;
+			var multy = features.height / params.currheight;
+
+			var xoffset = params.xoffset * multx;
+			var yoffset = params.yoffset * multy;
+			var newwidth = params.newwidth * multx;
+			var newheight = params.newheight * multy;
+			var permpath = path.join(app.get('hosted image url'),'/avatar/',imagename);
+
+			var cmd = [newwidth,'x',newheight,'+',xoffset,'+',yoffset].join('');
+
+			im.convert(['-crop', cmd, tmpPath, permpath], function(err, stdout) {
+				im.resize({
+					srcPath: permpath,
+					dstPath: permpath,
+					width: 300
+				}, function(err, stdout, stderr) {
+					User.findByIdAndUpdate(req.user.id, { avatar_id: imagename }, function(err, user) {
+						res.redirect('/'+user.username);
+					});
+				});
+			});
+		});
+	}
 
 	routes.folio = function(req, res) {
 		User.findOne({ username: req.params.username }, function(err, user) {
