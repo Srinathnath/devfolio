@@ -1,4 +1,4 @@
-var UserModel = require('../models/User.js')
+var UserModel = require('../models/user.js')
 ,	mongoose = require('mongoose')
 ,	fs = require('fs')
 ,	path = require('path')

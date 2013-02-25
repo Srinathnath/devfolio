@@ -5877,7 +5877,7 @@ a.badge:focus {
 .new-user-form label,
 .registration-form label {
   color: #333333;
-  width: 70px;
+  width: 75px;
   font-size: 14px;
   font-weight: 200;
 }
@@ -5909,7 +5909,7 @@ a.badge:focus {
   color: red;
 }
 .registration-form .text-input label {
-  width: 170px;
+  width: 180px;
   display: inline-block;
 }
 .registration-form .text-input input {
@@ -5936,7 +5936,7 @@ a.badge:focus {
   position: relative;
   width: 60px;
   margin-top: -35px;
-  margin-left: 177px;
+  margin-left: 185px;
   color: #888;
 }
 .success-message {
