@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	div.beta-signup
+		div.container
+			div.beta-signup-info
+				h1 Devfol.io
+
+			div.beta-signup-container
+				h3 Reserve Your Name Now!
+				if (message.length)
+					div.success-message= message
+				if (error.length)
+					div.error-message= error
+				form.new-user-form(method="post", action="/")
+					div
+						label(for="user[email]") Email:
+						input(type="text", name="user[email]")
+					div
+						label(for="user[username]") Username:
+						input(type="text", name="user[username]")
+					div
+						input.btn.btn-success.submit-input(type="Submit", value="Sign Up!")

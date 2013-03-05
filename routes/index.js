@@ -14,6 +14,41 @@ var routes = function(params) {
 		res.render('index', { message: req.flash('error'), user: req.user } );
 	};
 
+	routes.betaForm = function(req, res) {
+		res.render('beta', { message: req.flash('message'), error: req.flash('error') });
+	};
+
+	routes.betaSignup = function(req, res) {
+		var user = req.body.user;
+		if (!user.email.length || !user.username.length) {
+			req.flash('error', 'Please fill out the fields below')
+			res.redirect('/');
+		} else {
+
+			UserModel.validateEmail(user.email, function(isValid) {
+				if (!isValid) {
+					req.flash('error', 'Email is already in use.')
+					res.redirect('/');
+				} else {
+					UserModel.validateUsername(user.username, function(isValid) {
+						if (!isValid) {
+							req.flash('error', 'Username is already taken.')
+							res.redirect('/');
+						} else {
+							user.password = 'temp';
+							user = new UserModel.User(user);
+							user.save(function(err) {
+								if (err) console.log(err);
+								req.flash('message', 'Thanks for signing up! We\'ll email you when we launch');
+								res.redirect('/');
+							});
+						}
+					});
+				}
+			});
+		}
+	}
+
 	/*
 	 * User creation routes
 	 */
@@ -154,7 +189,7 @@ var routes = function(params) {
 
 	routes.folio = function(req, res) {
 		User.findOne({ username: req.params.username }, function(err, user) {
-			if (!user)
+			if (!user || !user.is_active)
 				res.send(404);
 			else {
 				// Allow users to edit their own pages.

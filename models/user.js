@@ -3,8 +3,8 @@ var mongoose = require('mongoose')
 ,	SALT_WORK_FACTOR = 10;
 
 var UserSchema = mongoose.Schema({
-	firstName: { type: String, required: true },
-	lastName: { type: String, required: true },
+	firstName: { type: String },
+	lastName: { type: String },
 	email: { type: String, required: true, index: { unique: true }},
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true },
@@ -29,6 +29,7 @@ var UserSchema = mongoose.Schema({
 	avatar_id: String,
 	linkedin_id: String,
 	github_id: String,
+	is_active: { type: Boolean, default: false },
 	created_at: { type: Date, default: Date.now }
 });
 
@@ -56,6 +57,7 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
 };
 
 module.exports.User = User = mongoose.model('User', UserSchema);
+
 module.exports.validateEmail = function(candidateEmail, cb) {
 	User.findOne({ email: candidateEmail }, function(err, user) {
 		if (err) return cb(err);

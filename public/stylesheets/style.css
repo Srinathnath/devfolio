@@ -5869,6 +5869,47 @@ a.badge:focus {
   font-weight: 200;
   font-size: 20px;
 }
+.beta-signup-info {
+  width: 350px;
+  margin: 50px auto 10px auto;
+  padding: 25px;
+}
+.beta-signup-info h1 {
+  margin-left: 0px;
+  font-family: "HelveticaNeue-UltraLight", "Helvetica Neue Ultra Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 100;
+  font-size: 70px;
+  color: #222222;
+}
+.beta-signup-container {
+  width: 300px;
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  padding: 25px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.beta-signup-container h3 {
+  font-weight: 200;
+  font-size: 20px;
+}
+.beta-signup-container input {
+  width: 100%;
+}
+.beta-signup-container .sumbit-input {
+  width: 200px;
+}
+.beta-signup-container .error-message {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: red;
+}
+.beta-signup-container .success-message {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: green;
+}
 .pre-registration-container {
   width: 350px;
   padding: 30px;
@@ -5920,7 +5961,7 @@ a.badge:focus {
   list-style: none;
   color: red;
   font-size: 12px;
-  width: 525px;
+  width: 510px;
   float: right;
   padding-top: 5px;
 }
@@ -5943,9 +5984,6 @@ a.badge:focus {
   padding: 5px;
   background: #e6efc2;
   color: #264409;
-  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 }
 .login-container {
   width: 323px;

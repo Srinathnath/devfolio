@@ -60,14 +60,16 @@ var routes = require('./routes')({ app: app });
 /*
  * Static Routes
  */
-app.get('/', sessionHandler.verifyNotLoggedIn, routes.index);
+//app.get('/', sessionHandler.verifyNotLoggedIn, routes.index);
+app.get('/', sessionHandler.verifyNotLoggedIn, routes.betaForm);
+app.post('/', sessionHandler.verifyNotLoggedIn, routes.betaSignup);
 
 /*
  * User creation routes
  */
-app.get('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
+/*app.get('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
 app.post('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
-app.post('/register', sessionHandler.verifyNotLoggedIn, routes.createUser);
+app.post('/register', sessionHandler.verifyNotLoggedIn, routes.createUser);*/
 
 /*
  * Validation Routes
