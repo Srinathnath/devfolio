@@ -10,7 +10,8 @@ var express = require('express')
 ,   passport = require('passport')
 ,   localStrategy = require('passport-local').Strategy
 ,   sessionHandler = require('./lib/session')
-,   mongoose = require('mongoose');
+,   mongoose = require('mongoose')
+,   lessMiddleware = require('less-middleware');
 
 
 var app = express();
@@ -29,7 +30,7 @@ app.configure(function() {
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(app.router);
-    app.use(require('less-middleware')({ src: __dirname + '/public' }));
+    app.use(lessMiddleware(path.join(__dirname, '/public')));
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -67,9 +68,9 @@ app.post('/', sessionHandler.verifyNotLoggedIn, routes.betaSignup);
 /*
  * User creation routes
  */
-/*app.get('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
+app.get('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
 app.post('/new_user', sessionHandler.verifyNotLoggedIn, routes.newUser);
-app.post('/register', sessionHandler.verifyNotLoggedIn, routes.createUser);*/
+app.post('/register', sessionHandler.verifyNotLoggedIn, routes.createUser);
 
 /*
  * Validation Routes
